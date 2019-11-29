@@ -3,4 +3,6 @@ from AirPort import *
 #Arturo Caballero Ortega
 
 if __name__ == "__main__":
-    AirPort()
+    console = UserInput()
+    console = console.datos()
+    print(console)

@@ -153,3 +153,26 @@ class ReadTraveller:
 
             travellers[passport] = traveller
             return travellers
+
+class WriteTheFile:
+    def __init__(self, _date, _time):
+        self.date = _date
+        self.time = _time
+
+    def write(self, _number_of_empty_tracks, _number_of_busy_tracks, 
+              _number_in_check_in, _number_of_passengers_in_security, 
+              _number_of_passengers_boarder, _number_of_flights_landed, 
+              _number_of_flights_departured, _aviable_gates = [], _occupied_gates = []):
+        file = open("statistics.csv", "w+")
+        text = (self.date + "," + self.time + "," + _number_of_empty_tracks + 
+                "," + _number_of_busy_tracks + "," + _number_in_check_in + 
+                "," + _number_of_passengers_in_security + "," + _number_of_passengers_boarder
+                + "," + _number_of_flights_landed + "," + _number_of_flights_departured +
+                "," + _aviable_gates + "," + _occupied_gates)
+
+        file = file.write("date,time,number of empty tracks,number of busy tracks," + 
+                   "number in check in,number of passengers in security," +
+                   "number of passengers boarder,number of flights landed," +
+                   "numebr of flights departured,aviable gates,occupied gates\n")
+        file = file.write(text)
+        file.close

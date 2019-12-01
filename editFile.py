@@ -106,7 +106,6 @@ class ReadPassenger:
         file.close
 
         passengers = {}
-        passenger1 = []
 
         for l in lines:
             fields = l.split(",")
@@ -116,12 +115,9 @@ class ReadPassenger:
             seat = fields[3]
             location = fields[4]
 
-            passenger = Passenger(flight, passport, clas, seat, location)
+            passengers[passport] = fields
 
-            passenger1 = passenger
-            passengers[flight] = fields
-
-        return passengers, passenger1
+        return passengers
 
 class ReadPlane:
     def read(self):

@@ -8,7 +8,3 @@ class Pilot:
         self.country = _country
         self.gender = _gender
         self.marital_status = _marital_status
-
-class Conteo:
-    def __init__(self, *args, **kwargs):
-        return super().__init__(*args, **kwargs)

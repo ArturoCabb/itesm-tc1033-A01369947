@@ -1,5 +1,5 @@
 class Passenger:
-    def __init__(self, _flight, _passport, _class, _seat, _location):
+    def __init__(self):
         self.flight = _flight
         self.passport = _passport
         self.clas = _class

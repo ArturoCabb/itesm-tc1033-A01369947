@@ -4,5 +4,5 @@ from AirPort import *
 
 if __name__ == "__main__":
     airport = UserInput()
-    airport = airport.Track()
+    airport = airport.datos()
     print(airport)

@@ -7,12 +7,17 @@ class UserInput:
         print("Ingrese la hora en formato HHMM")
         hour = str(input())
         
-        a = editFile.ReadFlight()
-        a, b = a.read()
+        flight = editFile.ReadFlight()
+        itemA, itemB = flight.read()
 
-        for i in a:
-            l = a[i]
-            c = l[5][:6]
-            d = l[5][7:10]
-            if c == date and d == hour:
-                print(c)
+        passenger = editFile.ReadPassenger()
+        itemC, itemD = passenger.read()
+        
+        for x in itemA:
+            l = itemA[i]
+            a = l[5][:6]
+            b = l[5][7:10]
+            if a == date and b == hour:
+                for xx in itemC:
+                    l = itemC[0]
+                    print(l)

@@ -7,13 +7,16 @@ from traveller import Traveller
 
 class ReadPilot:
     def read(self):
-        file = open("sources\pilots.csv", "r")
-        lines = file.readlines
-        lines.pop(0)
-        file.close
-
         pilots = {}
         pilot1 = []
+        lines = ""
+        try:
+            file = open("sources\pilots.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except:
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -25,23 +28,25 @@ class ReadPilot:
             gender = fields[5]
             marital_status = fields[6]
 
-            pilot = Pilot(passport, forename, surname, 
-                          date_of_birthday, country, gender, marital_status)
+            pilot = Pilot(passport, forename, surname, date_of_birthday, country, 
+                          gender, marital_status)
             
             pilot1 = pilot
             pilots[passport] = fields
-
         return pilots, pilot1
 
 class ReadAttendants:
     def read(self):
-        file = open("sources\attendants.csv", "r")
-        lines = file.readlines
-        lines.pop(0)
-        file.close
-
         attendants = {}
         attendant1 = []
+        lines = ""
+        try:
+            file = open("sources\attendants.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except:
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -53,23 +58,25 @@ class ReadAttendants:
             gender = fields[5]
             maritial_status = fields[6]
 
-            attendant = Attendant(passport, forename, surname, 
-                          date_of_birthday, country, gender, marital_status)
+            attendant = Attendant(passport, forename, surname, date_of_birthday, country, 
+                                  gender, marital_status)
 
             attendants[passport] = fields
             attendant1 = attendant
-
         return attendants, attendant1
 
 class ReadFlight:
     def read(self):
-        file = open("flights.csv", "r")
-        lines = file.readlines
-        lines.pop(0)
-        file.close
-
+        lines = ""
         flights = {}
         flight1 = []
+        try:
+            file = open("files\flights.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except :
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -88,24 +95,26 @@ class ReadFlight:
             co_pilot = fields[12]
             attendant = fields[13]
 
-            flight = Flight(id, plate, origin, destiny, departure, 
-                            arriving, status, departure_gate, take_off_track, 
-                            arriving_gate, landing_track, arriving_gate, 
-                            landing_track, pilot, co_pilot, attendant)
+            flight = Flight(id, plate, origin, destiny, departure, arriving, status, 
+                            departure_gate, take_off_track, arriving_gate, landing_track, 
+                            arriving_gate, landing_track, pilot, co_pilot, attendant)
 
             flight1 = flight
             flights[id] = fields
-
-            return flights, flight1
+        return flights, flight1
 
 class ReadPassenger:
     def read(self):
-        file = open("sources\passengers.csv", "r")
-        lines = file.readlines()
-        lines.pop(0)
-        file.close
-
         passengers = {}
+        passenger1 = []
+        lines = ""
+        try:
+            file = open("sources\passengers.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except:
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -115,18 +124,23 @@ class ReadPassenger:
             seat = fields[3]
             location = fields[4]
 
+            passenger = Passenger(flight,passport,clas,seat,location)
+            passenger1 = passenger
             passengers[passport] = fields
-
-        return passengers
+        return passengers, passenger1
 
 class ReadPlane:
     def read(self):
-        file = open("planes.csv", "r")
-        lines = file.readlines
-        lines.pop(0)
-        file.close
-
         planes = {}
+        plane1 = []
+        lines = ""
+        try:
+            file = open("sources\planes.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except:
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -137,23 +151,25 @@ class ReadPlane:
             luggage_capacity = fields[4]
             max_speed = fields[5]
 
-            plane = Plane(plate, manufacturer, model, passenger_capacity, 
-                          luggage_capacity, max_speed)
+            plane = Plane(plate, manufacturer, model, passenger_capacity,
+                         luggage_capacity, max_speed)
 
-            planes[plate] = fileds
             plane1 = plane
-
-            return planes, plane1
+            planes[plate] = fileds
+        return planes, plane1
 
 class ReadTraveller:
     def read(self):
-        file = open("travellers.csv", "r")
-        lines = file.readlines
-        lines.pop(0)
-        file.close
-
         travellers = {}
         traveller1 = []
+        lines = ""
+        try:
+            file = open("sources\travellers.csv", "r")
+            lines = file.readlines()
+            lines.pop(0)
+            file.close()
+        except:
+            print("Error")
 
         for l in lines:
             fields = l.split(",")
@@ -170,8 +186,7 @@ class ReadTraveller:
 
             travellers[passport] = fields
             traveller1 = traveller
-
-            return travellers, traveller1
+        return travellers, traveller1
 
 class WriteTheFile:
     def __init__(self, _date, _time):
@@ -182,16 +197,19 @@ class WriteTheFile:
               _number_in_check_in, _number_of_passengers_in_security, 
               _number_of_passengers_boarder, _number_of_flights_landed, 
               _number_of_flights_departured, _aviable_gates = [], _occupied_gates = []):
-        file = open("statistics.csv", "w+")
-        text = (self.date + "," + self.time + "," + _number_of_empty_tracks + 
-                "," + _number_of_busy_tracks + "," + _number_in_check_in + 
-                "," + _number_of_passengers_in_security + "," + _number_of_passengers_boarder
-                + "," + _number_of_flights_landed + "," + _number_of_flights_departured +
-                "," + _aviable_gates + "," + _occupied_gates)
+        try:
+            file = open("statistics.csv", "w+")
+            text = (self.date + "," + self.time + "," + _number_of_empty_tracks + 
+                    "," + _number_of_busy_tracks + "," + _number_in_check_in + 
+                    "," + _number_of_passengers_in_security + "," + _number_of_passengers_boarder
+                    + "," + _number_of_flights_landed + "," + _number_of_flights_departured +
+                    "," + _aviable_gates + "," + _occupied_gates)
 
-        file = file.write("date,time,number of empty tracks,number of busy tracks," + 
-                   "number in check in,number of passengers in security," +
-                   "number of passengers boarder,number of flights landed," +
-                   "numebr of flights departured,aviable gates,occupied gates\n")
-        file = file.write(text)
-        file.close
+            file = file.write("date,time,number of empty tracks,number of busy tracks," + 
+                       "number in check in,number of passengers in security," +
+                       "number of passengers boarder,number of flights landed," +
+                       "numebr of flights departured,aviable gates,occupied gates\n")
+            file = file.write(text)
+            file.close()
+        except:
+            print("Error")

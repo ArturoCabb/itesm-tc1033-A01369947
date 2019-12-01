@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\sources"
   ],
-  "SelectedNode": "\\clase1.py",
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\sources\\travellers.csv",
+  "PreviewInSolutionExplorer": true
 }

@@ -3,6 +3,6 @@ from AirPort import *
 #Arturo Caballero Ortega
 
 if __name__ == "__main__":
-    console = UserInput()
-    console = console.datos()
-    print(console)
+    airport = UserInput()
+    airport = airport.Track()
+    print(airport)

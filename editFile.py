@@ -7,15 +7,16 @@ from traveller import Traveller
 
 class ReadPilot:
     def read(self):
-        file = open("pilots.csv", "r")
+        file = open("sources\pilots.csv", "r")
         lines = file.readlines
         lines.pop(0)
         file.close
 
         pilots = {}
+        pilot1 = []
 
         for l in lines:
-            fields = lines.split(",")
+            fields = l.split(",")
             passport = fields[0]
             forename = fields[1]
             surname = fields[2]
@@ -26,19 +27,24 @@ class ReadPilot:
 
             pilot = Pilot(passport, forename, surname, 
                           date_of_birthday, country, gender, marital_status)
-            pilots[passport] = pilot
-        return pilots
+            
+            pilot1 = pilot
+            pilots[passport] = fields
+
+        return pilots, pilot1
 
 class ReadAttendants:
     def read(self):
-        file = open("attendants.csv", "r")
+        file = open("sources\attendants.csv", "r")
         lines = file.readlines
         lines.pop(0)
         file.close
 
         attendants = {}
+        attendant1 = []
 
         for l in lines:
+            fields = l.split(",")
             passport = fields[0]
             forename = fields[1]
             surname = fields[2]
@@ -49,8 +55,11 @@ class ReadAttendants:
 
             attendant = Attendant(passport, forename, surname, 
                           date_of_birthday, country, gender, marital_status)
-            attendants[passport] = attendant
-        return attendants
+
+            attendants[passport] = fields
+            attendant1 = attendant
+
+        return attendants, attendant1
 
 class ReadFlight:
     def read(self):
@@ -60,51 +69,59 @@ class ReadFlight:
         file.close
 
         flights = {}
+        flight1 = []
 
         for l in lines:
-            id = flights[0]
-            plate = flights[1]
-            origin = flights[2]
-            destiny = flights[3]
-            departure = flights[4]
-            arriving = flights[5]
-            status = flights[6]
-            departure_gate = flights[7]
-            take_off_track = flights[8]
-            arriving_gate = flights[9]
-            landing_track = flights[10]
-            pilot = flights[11]
-            co_pilot = flights[12]
-            attendant = flights[13]
+            fields = l.split(",")
+            id = fields[0]
+            plate = fields[1]
+            origin = fields[2]
+            destiny = fields[3]
+            departure = fields[4]
+            arriving = fields[5]
+            status = fields[6]
+            departure_gate = fields[7]
+            take_off_track = fields[8]
+            arriving_gate = fields[9]
+            landing_track = fields[10]
+            pilot = fields[11]
+            co_pilot = fields[12]
+            attendant = fields[13]
 
             flight = Flight(id, plate, origin, destiny, departure, 
                             arriving, status, departure_gate, take_off_track, 
                             arriving_gate, landing_track, arriving_gate, 
                             landing_track, pilot, co_pilot, attendant)
 
-            flights[id] = flight
-            return flights
+            flight1 = flight
+            flights[id] = fields
+
+            return flights, flight1
 
 class ReadPassenger:
     def read(self):
-        file = open("passengers.csv", "r")
-        lines = file.readlines
+        file = open("sources\passengers.csv", "r")
+        lines = file.readlines()
         lines.pop(0)
         file.close
 
         passengers = {}
+        passenger1 = []
 
         for l in lines:
-            flight = passengers[0]
-            passport = passengers[1]
-            clas = passengers[2]
-            seat = passengers[3]
-            location = passengers[4]
+            fields = l.split(",")
+            flight = fields[0]
+            passport = fields[1]
+            clas = fields[2]
+            seat = fields[3]
+            location = fields[4]
 
-            passenger = Passenger(flight, paspassport, clas, seat, location)
+            passenger = Passenger(flight, passport, clas, seat, location)
 
-            passengers[flight] = passenger
-            return passengers
+            passenger1 = passenger
+            passengers[flight] = fields
+
+        return passengers, passenger1
 
 class ReadPlane:
     def read(self):
@@ -116,18 +133,21 @@ class ReadPlane:
         planes = {}
 
         for l in lines:
-            plate = palnes[0]
-            manufacturer = planes[1]
-            model = planes[2]
-            passenger_capacity = planes[3]
-            luggage_capacity = planes[4]
-            max_speed = planes[5]
+            fields = l.split(",")
+            plate = fields[0]
+            manufacturer = fields[1]
+            model = fields[2]
+            passenger_capacity = fields[3]
+            luggage_capacity = fields[4]
+            max_speed = fields[5]
 
             plane = Plane(plate, manufacturer, model, passenger_capacity, 
                           luggage_capacity, max_speed)
 
-            planes[plate] = plane
-            return planes
+            planes[plate] = fileds
+            plane1 = plane
+
+            return planes, plane1
 
 class ReadTraveller:
     def read(self):
@@ -137,22 +157,25 @@ class ReadTraveller:
         file.close
 
         travellers = {}
+        traveller1 = []
 
         for l in lines:
-            passport = travellers[0]
-            forename = travellers[1]
-            surname = travellers[2]
-            date_of_birth = travellers[3]
-            country = travellers[4]
-            gender = traveller[5]
-            maritial_status = travellers[6]
+            fields = l.split(",")
+            passport = fields[0]
+            forename = fields[1]
+            surname = fields[2]
+            date_of_birth = fields[3]
+            country = fields[4]
+            gender = fields[5]
+            maritial_status = fields[6]
 
-            traveller = Traveller(paspassport, forename, surname, 
-                                  date_of_birth, country, gender, 
-                                  maritial_status)
+            traveller = Traveller(paspassport, forename, surname, date_of_birth, 
+                                  country, gender, maritial_status)
 
-            travellers[passport] = traveller
-            return travellers
+            travellers[passport] = fields
+            traveller1 = traveller
+
+            return travellers, traveller1
 
 class WriteTheFile:
     def __init__(self, _date, _time):

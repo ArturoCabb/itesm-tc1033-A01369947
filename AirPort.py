@@ -9,3 +9,12 @@ class UserInput:
         return date, hour
 
 class Airport:
+    def __init__(self):
+        self.tracks
+        self.attendant
+        self.airplanes
+        self.pilots
+        self.travellers
+
+    def populated_airport(self):
+        pilot = 

@@ -1,6 +1,6 @@
-from contructor import *
+from constructor import *
 
-class ReadPilot(Crew):
+class ReadPilot:
     def read(self):
         pilots = {}
         lines = ""
@@ -49,7 +49,7 @@ class ReadAttendants:
             gender = fields[5]
             maritial_status = fields[6]
 
-            attendant = Attendant(passport, forename, surname, date_of_birthday, country, 
+            attendant = Crew(passport, forename, surname, date_of_birthday, country, 
                                   gender, marital_status)
 
             attendants[passport] = attendant

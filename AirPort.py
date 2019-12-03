@@ -1,20 +1,67 @@
-import editFile
+from editFile import *
 
 class UserInput:
     def datos(self):
         print("Ingrese una fecha en formato AAMMDD")
         date = str(input())
         print("Ingrese la hora en formato HHMM")
-        hour = str(input())
-        return date, hour
+        time = str(input())
+        return date, time
 
 class Airport:
     def __init__(self):
-        self.tracks
-        self.attendant
-        self.airplanes
-        self.pilots
-        self.travellers
+        self.tracks = None
+        self.airplanes = None
+        self.passengers = None
+        self.pilots = None
+        self.attendants = "vacío"
+        self.travellers = None
 
     def populated_airport(self):
-        pilot = 
+        self.pilots = ReadPilot().read()
+        self.attendant = ReadAttendants().read()
+        self.airplanes = ReadAirPlane().read()
+        self.flights = ReadFlight().read()
+        self.traveller = ReadTraveller().read()
+
+    def generate_statistics(self, _date, _time):
+        number_empty_tracks = 0
+        number_of_occupied_tracks = 0
+        number_of_empty_gates = 0
+        number_of_occupied_gates = 0
+        number_in_check_in = 0
+        number_of_passengers_in_security = 0 
+        number_of_passengers_boarder = 0
+        number_of_flights_landed = 0
+        number_of_flights_departured = 0
+
+        for flight in self.flights.values():
+            # origin
+            if flight.origin == "Ciudad de Mexico - MEXICO":
+                date = flight.departure.split("_")[0]
+                time = flight.departure.split("_")[1]
+            else:
+                date = flight.arriving.split("_")[0]
+                time = flight.arriving.split("_")[1]
+
+            if date == _date and int(time) == int(_time):
+                # counting tracks
+                if flight.status in ["boarded", "landing"]:
+                    number_of_occupied_tracks += 1
+                else:
+                    number_empty_tracks += 1
+
+                # counting gates
+                if flight.status in ["boarded", "landing", "in transit"]:
+                    number_of_empty_gates += 1
+                else:
+                    number_of_occupied_gates += 1
+
+        report = WriteTheFile(_date, _time, number_empty_tracks, 
+                              number_of_occupied_tracks, number_in_check_in,
+                              number_of_passengers_in_security, 
+                              number_of_passengers_boarder, 
+                              number_of_flights_landed, 
+                              number_of_flights_departured, 
+                              number_of_empty_gates, 
+                              number_of_occupied_gates).writeFile()

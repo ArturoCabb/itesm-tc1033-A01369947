@@ -10,8 +10,8 @@ class Crew:
         self.marital_status = _marital_status
 
 class Flight:
-    def __init__(self, _id, _plate, _origin, _destiny, _departure, 
-                 _arriving, _status, _departure_gate, _take_off_track, 
+    def __init__(self, _id, _plate, _origin, _destiny, _departure,
+                 _arriving,_status,_departure_gate, _take_off_track,
                  _arriving_gate, _landing_track, _pilot, _copilot, 
                  _attendants):
         self.id = _id
@@ -53,7 +53,7 @@ class Traveller:
         self.passport = _passport
         self.forename = _forename
         self.surname = _surname
-        self.date_of_birth = _date_of_birtth
+        self.date_of_birth = _date_of_birth
         self.country = _country
         self.gender = _gender
         self.marital_status = _marital_status

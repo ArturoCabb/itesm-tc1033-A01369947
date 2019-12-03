@@ -4,5 +4,6 @@ from AirPort import *
 
 if __name__ == "__main__":
     airport = UserInput()
-    airport = airport.datos()
-    print(airport)
+    date, time = airport.datos()
+
+

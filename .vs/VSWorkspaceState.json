@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\files"
   ],
-  "SelectedNode": "\\editFile.py",
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\solution_t3.py",
+  "PreviewInSolutionExplorer": true
 }

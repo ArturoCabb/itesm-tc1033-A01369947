@@ -19,10 +19,10 @@ class Airport:
 
     def populated_airport(self):
         self.pilots = ReadPilot().read()
-        self.attendant = ReadAttendants().read()
+        self.attendants = ReadAttendants().read()
         self.airplanes = ReadAirPlane().read()
         self.flights = ReadFlight().read()
-        self.traveller = ReadTraveller().read()
+        self.travellers = ReadTraveller().read()
 
     def generate_statistics(self, _date, _time):
         number_empty_tracks = 0
@@ -56,6 +56,18 @@ class Airport:
                     number_of_empty_gates += 1
                 else:
                     number_of_occupied_gates += 1
+
+        for attendant in self.attendants.values():
+            pass
+
+        for pilot in self.pilots.values():
+            pass
+
+        for airplane in self.airplanes.values():
+            pass
+
+        for traveller in self.travellers.values():
+            pass
 
         report = WriteTheFile(_date, _time, number_empty_tracks, 
                               number_of_occupied_tracks, number_in_check_in,

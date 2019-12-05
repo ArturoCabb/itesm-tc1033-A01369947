@@ -25,13 +25,13 @@ class Airport:
         self.travellers = ReadTraveller().read()
 
     def generate_statistics(self, _date, _time):
-        number_empty_tracks = 0
-        number_of_occupied_tracks = 0
-        number_of_empty_gates = 0
-        number_of_occupied_gates = 0
-        number_in_check_in = 0
-        number_of_passengers_in_security = 0 
-        number_of_passengers_boarder = 0
+        number_empty_tracks = 0 #
+        number_of_occupied_tracks = 0#
+        number_of_empty_gates = 0#
+        number_of_occupied_gates = 0#
+        number_in_check_in = 0#
+        number_of_passengers_in_security = 0 #
+        number_of_passengers_boarder = 0#
         number_of_flights_landed = 0
         number_of_flights_departured = 0
 
@@ -57,17 +57,14 @@ class Airport:
                 else:
                     number_of_occupied_gates += 1
 
-        for attendant in self.attendants.values():
-            pass
-
-        for pilot in self.pilots.values():
-            pass
-
-        for airplane in self.airplanes.values():
-            pass
-
-        for traveller in self.travellers.values():
-            pass
+                for passenger in self.passengers.values():
+                    if passenger.flight == flight.id:
+                        if passenger.location == "check-in":
+                            number_in_check_in += 1
+                        elif passenger.location == "security" and passenger.flight == flight.id:
+                            number_of_passengers_in_security += 1
+                        elif passenger.location == "boarded" and passenger.flight == flight.id:
+                            number_of_passengers_boarder += 1
 
         report = WriteTheFile(_date, _time, number_empty_tracks, 
                               number_of_occupied_tracks, number_in_check_in,

@@ -96,62 +96,62 @@ class Airport:
             value[_passport] = [_flight, _passport, _class, _seat, _location]
             return value
 
-        def modify_pilot(self, _passport, _forename, _surname, _date_of_birth, 
-                         _country, _gender, _marital_status):
-            value = self.pilots.values()
-            value[0] = _passport
-            value[1] = _forename
-            value[2] = _surname
-            value[3] = _date_of_birth
-            value[4] = _country
-            value[5] = _gender
-            value[6] = _marital_status
-
-        def modify_attendants(self, _passport, _forename, _surname,
-                             _date_of_birth, _country, _gender, _marital_status):
-            value = self.attendants.values()
-            value[0] = _passport
-            value[1] = _forename
-            value[2] = _surname
-            value[3] = _date_of_birth
-            value[4] = _country
-            value[5] = _gender
-            value[6] = _marital_status
-
-        def modify_travellers(self,  _passport, _forename, _surname, 
-                              _date_of_birth, _country, _gender, _marital_status):
-            value = self.travellers.values()
-            value[0] = _passport
-            value[1] = _forename
-            value[2] = _surname
-            value[3] = _date_of_birth
-            value[4] = _country
-            value[5] = _gender
-            value[6] = _marital_status
-
-        def modify_passengers(self, _flight, _passport, _class, _seat, _location):
-            value = self.passengers.values()
-            value[0] = _flight
-            value[1] = _passport
-            value[2] = _class
-            value[3] = _seat
-            value[4] = _location
-        
-        def modify_flights(self, _id, _plate, _origin, _destiny, _departure, _arriving,
-                           _status, _departure_gate, _take_off_track, _arriving_gate,
-                           _landing_track, _pilot, _copilot, _attendants):
-            value = self.flights.values()
-            value[0] = _id
-            value[1] = _plate
-            value[2] = _origin
-            value[3] = _destiny
-            value[4] = _departure
-            value[5] = _arriving
-            value[6] = _status
-            value[7] = _departure_gate
-            value[9] = _take_off_track
-            value[8] = _arriving_gate
-            value[10] = _landing_track
-            value[11] = _pilot
-            value[12] = _copilot
-            value[13] = _attendants
+    def modify_pilot(self, _passport, _forename, _surname, _date_of_birth, 
+                     _country, _gender, _marital_status):
+        value = self.pilots.values()
+        value[0] = _passport
+        value[1] = _forename
+        value[2] = _surname
+        value[3] = _date_of_birth
+        value[4] = _country
+        value[5] = _gender
+        value[6] = _marital_status
+    
+    def modify_attendants(self, _passport, _forename, _surname,
+                         _date_of_birth, _country, _gender, _marital_status):
+        value = self.attendants.values()
+        value[0] = _passport
+        value[1] = _forename
+        value[2] = _surname
+        value[3] = _date_of_birth
+        value[4] = _country
+        value[5] = _gender
+        value[6] = _marital_status
+    
+    def modify_travellers(self,  _passport, _forename, _surname, 
+                          _date_of_birth, _country, _gender, _marital_status):
+        value = self.travellers.values()
+        value[0] = _passport
+        value[1] = _forename
+        value[2] = _surname
+        value[3] = _date_of_birth
+        value[4] = _country
+        value[5] = _gender
+        value[6] = _marital_status
+    
+    def modify_passengers(self, _flight, _passport, _class, _seat, _location):
+        value = self.passengers.values()
+        value[0] = _flight
+        value[1] = _passport
+        value[2] = _class
+        value[3] = _seat
+        value[4] = _location
+    
+    def modify_flights(self, _id, _plate, _origin, _destiny, _departure, _arriving,
+                       _status, _departure_gate, _take_off_track, _arriving_gate,
+                       _landing_track, _pilot, _copilot, _attendants):
+        value = self.flights.values()
+        value[0] = _id
+        value[1] = _plate
+        value[2] = _origin
+        value[3] = _destiny
+        value[4] = _departure
+        value[5] = _arriving
+        value[6] = _status
+        value[7] = _departure_gate
+        value[9] = _take_off_track
+        value[8] = _arriving_gate
+        value[10] = _landing_track
+        value[11] = _pilot
+        value[12] = _copilot
+        value[13] = _attendants

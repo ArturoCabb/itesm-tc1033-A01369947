@@ -32,8 +32,8 @@ class Airport:
         number_in_check_in = 0#
         number_of_passengers_in_security = 0 #
         number_of_passengers_boarder = 0#
-        number_of_flights_landed = 0
-        number_of_flights_departured = 0
+        number_of_flights_landed = 0#
+        number_of_flights_departured = 0#
 
         for flight in self.flights.values():
             # origin
@@ -65,6 +65,13 @@ class Airport:
                             number_of_passengers_in_security += 1
                         elif passenger.location == "boarded" and passenger.flight == flight.id:
                             number_of_passengers_boarder += 1
+                
+                for flight in self.flights.values():
+                    if flight.id == id:
+                        if flight.status == "landed":
+                            number_of_flights_landed += 1
+                        elif flight.status == "in transit" and flight.id == id:
+                            number_of_flights_departured += 1
 
         report = WriteTheFile(_date, _time, number_empty_tracks, 
                               number_of_occupied_tracks, number_in_check_in,

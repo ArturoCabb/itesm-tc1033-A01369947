@@ -1,6 +1,7 @@
 from AirPort import *
 # -*- coding: utf-8 -*-
 #Arturo Caballero Ortega
+#Erik Patricio Trujillo Barrientos
 
 if __name__ == "__main__":
     airport = UserInput()

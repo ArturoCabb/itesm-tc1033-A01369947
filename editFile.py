@@ -208,3 +208,31 @@ class WriteTheFile:
             file.close()
         except Exception as e:
             print("Error al crear archivo: ", e,)
+
+    def writeFile(self, flight, traveller, passenger, m_pilot, m_attendant, 
+                  m_traveller, m_passenger, m_flight):
+        try:
+            with open('flights.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                if fligth.items() == m_flight.items():
+                    for value in fligth.items():
+                        w.writerow(value)
+            with open('travellers.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                if traveller.items() == m_traveller.items():
+                    for value in traveller.items():
+                        w.writerow(value)
+            with open('passengers.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                for value in passenger.items():
+                    w.writerow(value)
+            with open('pilots.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                for value in m_pilot.items():
+                    w.writerow(value)
+            with open('attendants.csv', 'w', newline='') as f:
+                w = csv.writer(f)
+                for value in attendants.items():
+                    w.writerow(value)
+        except Exception as e:
+            print(e)

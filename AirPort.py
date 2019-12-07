@@ -25,15 +25,15 @@ class Airport:
         self.travellers = ReadTraveller().read()
 
     def generate_statistics(self, _date, _time):
-        number_empty_tracks = 0 #
-        number_of_occupied_tracks = 0#
-        number_of_empty_gates = 0#
-        number_of_occupied_gates = 0#
-        number_in_check_in = 0#
-        number_of_passengers_in_security = 0 #
-        number_of_passengers_boarder = 0#
-        number_of_flights_landed = 0#
-        number_of_flights_departured = 0#
+        number_empty_tracks = 0 
+        number_of_occupied_tracks = 0
+        number_of_empty_gates = 0
+        number_of_occupied_gates = 0
+        number_in_check_in = 0
+        number_of_passengers_in_security = 0 
+        number_of_passengers_boarder = 0
+        number_of_flights_landed = 0
+        number_of_flights_departured = 0
 
         for flight in self.flights.values():
             # origin
@@ -56,6 +56,10 @@ class Airport:
                     number_of_empty_gates += 1
                 else:
                     number_of_occupied_gates += 1
+                if flight.status == "landed":
+                    number_of_flights_landed += 1
+                elif flight.status == "in transit" and flight.id == id:
+                    number_of_flights_departured += 1
 
                 for passenger in self.passengers.values():
                     if passenger.flight == flight.id:
@@ -65,13 +69,6 @@ class Airport:
                             number_of_passengers_in_security += 1
                         elif passenger.location == "boarded" and passenger.flight == flight.id:
                             number_of_passengers_boarder += 1
-                
-                for flight in self.flights.values():
-                    if flight.id == id:
-                        if flight.status == "landed":
-                            number_of_flights_landed += 1
-                        elif flight.status == "in transit" and flight.id == id:
-                            number_of_flights_departured += 1
 
         report = WriteTheFile(_date, _time, number_empty_tracks, 
                               number_of_occupied_tracks, number_in_check_in,
@@ -83,84 +80,86 @@ class Airport:
                               number_of_occupied_gates).writeFile()
 
     def modify_flight(self, _id, _plate, _origin, _destiny, _departure, _arriving, 
-                  _status, _departure_gate, _take_off_track, _arriving_gate, 
-                  _landing_track, _pilot, _co_pilot, _attendant):
+                      _status, _departure_gate, _take_off_track, _arriving_gate, 
+                      _landing_track, _pilot, _co_pilot, _attendant):
         value = self.flights
-        value[_id+_plate] = [_origin, _destiny, _departure, _arriving, _status, 
+        var = Flight(_id,_plate, _origin, _destiny, _departure, _arriving, _status, 
                              _departure_gate, _take_off_track, _arriving_gate, 
-                             _landing_track, _pilot, _co_pilot, _attendant]
-        return value
+                             _landing_track, _pilot, _co_pilot, _attendant)
+        value[_id+_plate] = var
+        self.flights = value
+        return self.flights
 
     def modify_traveller(self, _passport, _forename, _surname, _date_of_birth, 
-                             _country, _gender, _marital_status):
-            value = self.travellers
-            value[_passport] = [_forename, _surname, _date_of_birth, _country, 
-                                _gender, _marital_status]
-            return value
+                         _country, _gender, _marital_status):
+        value = self.travellers
+        var = Traveller(_passport, _forename, _surname, _date_of_birth, _country,
+                        _gender, _marital_status)
+        value[_passport] = var
+        self.travellers == value
+        return self.travellers
 
     def modify_passenger(self, _flight, _passport, _class, _seat, _location):
-            value = self.passengers
-            value[_passport] = [_flight, _passport, _class, _seat, _location]
-            return value
+        value = self.passengers
+        var = Passenger(_flight, _passport, _class, _location)
+        value[_passport] = var
+        self.passengers = value
+        return self.passengers
 
         #--------------------------------------------------------------------
 
     def modify_pilot(self, _passport, _forename, _surname, _date_of_birth, 
                      _country, _gender, _marital_status):
-        value = self.pilots.values()
-        value[0] = _passport
-        value[1] = _forename
-        value[2] = _surname
-        value[3] = _date_of_birth
-        value[4] = _country 
-        value[5] = _gender
-        value[6] = _marital_status
+        value = self.pilots
+        for pilot in self.pilots.values():
+            if pilot.passport == _passport:
+                value[pilot.passport] = (_passport, _forename, _surname,
+                                         _date_of_birth, _country, _gender,
+                                         _marital_status)
+                self.pilots = value
+        return self.pilots
     
     def modify_attendants(self, _passport, _forename, _surname,
                          _date_of_birth, _country, _gender, _marital_status):
-        value = self.attendants.values()
-        value[0] = _passport
-        value[1] = _forename
-        value[2] = _surname
-        value[3] = _date_of_birth
-        value[4] = _country
-        value[5] = _gender
-        value[6] = _marital_status
+        value = self.attendants
+        for attendant in self.attendants.values():
+            if attendant.passport == _passport:
+                value[attendant.passport] = (_passport, _forename, _surname,
+                                             _date_of_birth, _country, _gender,
+                                             _marital_status)
+                self.attendants = value
+        return self.attendants
     
     def modify_travellers(self,  _passport, _forename, _surname, 
                           _date_of_birth, _country, _gender, _marital_status):
-        value = self.travellers.values()
-        value[0] = _passport
-        value[1] = _forename
-        value[2] = _surname
-        value[3] = _date_of_birth
-        value[4] = _country
-        value[5] = _gender
-        value[6] = _marital_status
+        value = self.travellers
+        for traveller in self.travellers.values():
+            if traveller.passport == _passport:
+                value[traveller.passport] = (_passport, _forename, _surname,
+                                         _date_of_birth, _country, _gender,
+                                         _marital_status)
+                self.travellers = value
+        return self.travllers
     
     def modify_passengers(self, _flight, _passport, _class, _seat, _location):
-        value = self.passengers.values()
-        value[0] = _flight
-        value[1] = _passport
-        value[2] = _class
-        value[3] = _seat
-        value[4] = _location
+        value = self.passengers
+        for passenger in self.passengers.values():
+            if passenger.passport == _passport:
+                value[passenger.passport] = (_flight, _passport, _class,
+                                         _seat, _location)
+                self.passengers = value
+        return self.passengers
     
     def modify_flights(self, _id, _plate, _origin, _destiny, _departure, _arriving,
                        _status, _departure_gate, _take_off_track, _arriving_gate,
                        _landing_track, _pilot, _copilot, _attendants):
-        value = self.flights.values()
-        value[0] = _id
-        value[1] = _plate
-        value[2] = _origin
-        value[3] = _destiny
-        value[4] = _departure
-        value[5] = _arriving
-        value[6] = _status
-        value[7] = _departure_gate
-        value[9] = _take_off_track
-        value[8] = _arriving_gate
-        value[10] = _landing_track
-        value[11] = _pilot
-        value[12] = _copilot
-        value[13] = _attendants
+        value = self.flights
+        for flight in self.flights.values():
+            if flight.id == _id and flight.plate == _plate:
+                value[flight.id+flight.plate] = (_id, _plate, _origin, _destiny,
+                                                 _departure, _arriving, _status,
+                                                 _departure_gate, _take_off_track,
+                                                 _arriving_gate, _landing_track,
+                                                 _pilot, _copilot, _attendants)
+                self.flights = value
+        return self.flights
